@@ -26,17 +26,7 @@
       "height": 720.00,
       "name": "ReportSection60243c0ead629ec5aa87",
       "ordinal": 1,
-      "visualContainers": [
-        {
-          "config": "{\"name\":\"ab4702a211f0e03ac832\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.98266897746967,\"y\":19.96533795493934,\"z\":0,\"width\":233.34488734835355,\"height\":122.28769497400346,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Medidas.Soma Qtd\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Medidas\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Soma Qtd\"},\"Name\":\"Medidas.Soma Qtd\",\"NativeReferenceName\":\"Soma Qtd\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Soma Qtd\"}}}]},\"hasDefaultSort\":true}}",
-          "filters": "[]",
-          "height": 122.29,
-          "width": 233.34,
-          "x": 9.98,
-          "y": 19.97,
-          "z": 0.00
-        }
-      ],
+      "visualContainers": [],
       "width": 1280.00
     },
     {
