@@ -1,0 +1,9 @@
+DEFINE
+VAR Tabela = FILTER(Produto, [Soma Qtd] > 1000)
+MEASURE Medidas[Faturamento] =
+SUMX(
+	Vendas,
+	Vendas[Qtd] * RELATED(Produto[Preço Unitário])
+)
+EVALUATE
+{[Faturamento]}

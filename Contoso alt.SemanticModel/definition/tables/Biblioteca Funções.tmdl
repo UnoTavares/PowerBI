@@ -1,0 +1,65 @@
+table 'Biblioteca Funções'
+	isHidden
+	lineageTag: 91ade9f8-3fb9-4114-92a8-24de4e4ffbdf
+
+	column Função
+		dataType: string
+		isHidden
+		lineageTag: d48a339e-4e5b-432c-bb50-f6a15456d789
+		summarizeBy: none
+		sourceColumn: Função
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descrição
+		dataType: string
+		isHidden
+		lineageTag: dc92feae-bd50-4be5-b14b-b8ae9d2c63d1
+		summarizeBy: none
+		sourceColumn: Descrição
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Documentação
+		dataType: string
+		isHidden
+		lineageTag: 1a9356e9-07d6-4f07-92f2-01e5bd398976
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Documentação
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Categoria
+		dataType: string
+		isHidden
+		lineageTag: 243f296a-ab31-422e-9f48-238d110f5eb5
+		summarizeBy: none
+		sourceColumn: Categoria
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Biblioteca Funções' = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\Lago\Nexos Educação\Nexos - Documentos\02. Produtos\04. Formação em Power BI do Zero ao Pro\Arquivos - Formação em Power BI\Formação em Power BI - DAX Avançado\Ref\PBIX e Dados\Bilbioteca DAX.xlsx"), null, true),
+				    Tabela1_Table = Fonte{[Item="Tabela1",Kind="Table"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Tabela1_Table,{{"Função", type text}, {"Descrição", type text}, {"Documentação", type text}, {"Categoria", type text}})
+				in
+				    #"Tipo Alterado"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

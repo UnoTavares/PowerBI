@@ -1,0 +1,47 @@
+relationship 4f81913b-9717-434b-944d-0fe871897062
+	fromColumn: Vendas.'ID Promoção'
+	toColumn: Promoção.'ID Promoção'
+
+relationship d219834a-6b75-4cb0-9090-71ed9a06b8f1
+	fromColumn: Lojas.'ID Localização '
+	toColumn: Localização.'ID Localização'
+
+relationship 7b03cb88-7ab8-46af-814c-22aa8eceecf5
+	fromColumn: 'Produto Subcategoria'.'ID Categoria'
+	toColumn: 'Produto Categoria'.'ID Categoria'
+
+relationship bd936648-662f-4438-8a8c-e746b530d8ea
+	fromColumn: Vendas.'ID Canal'
+	toColumn: Canal.'ID Canal'
+
+relationship 51df2141-24dd-4ef8-8dd1-bf65764161e7
+	fromColumn: Vendas.'ID Produto'
+	toColumn: Produto.'ID Produto'
+
+relationship 7656b2ab-bac3-4fef-9ded-3aaf77d08a40
+	fromColumn: Produto.'ID Subcategoria'
+	toColumn: 'Produto Subcategoria'.'ID Subcategoria'
+
+relationship bd4c3275-3b43-4e3e-a58c-45aff42a0511
+	fromColumn: Vendas.'ID Loja'
+	toColumn: Lojas.'ID Loja'
+
+relationship 15c0abd7-713b-4e84-a222-926926de07e4
+	fromColumn: Vendas.Data
+	toColumn: Calendario.Data
+
+relationship 4a8b9805-1f75-4427-be23-9f8c96eb4383
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Promoção.'Data Inicial'
+	toColumn: LocalDateTable_ad27a8ca-41f9-430d-94f0-360c34b3d91f.Date
+
+relationship 2359a2bf-5c05-4106-9910-159f9ca8c330
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Promoção.'Data Final'
+	toColumn: LocalDateTable_0672611a-8fc5-4cec-9e38-bf4e16bc3be8.Date
+
+relationship ded10405-39e6-4741-af4f-4577b084d6c5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario.Data
+	toColumn: LocalDateTable_494f6084-63dc-45b5-8a35-e73ebdfeaaf8.Date
+

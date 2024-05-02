@@ -1,0 +1,10 @@
+EVALUATE
+SUMMARIZE(
+	Produto,
+	Produto[Classe],
+	"Faturamento",
+	SUMX(
+	Vendas,
+	Vendas[Qtd] * RELATED(Produto[Preço Unitário])
+)
+)

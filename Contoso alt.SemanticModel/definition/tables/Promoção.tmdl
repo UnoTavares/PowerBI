@@ -1,0 +1,84 @@
+table Promoção
+	lineageTag: 6056be51-aa22-4566-9677-7c3763db07a4
+
+	column 'ID Promoção'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b9b1503f-3e6e-4517-b554-0b2f1ad59a12
+		summarizeBy: none
+		sourceColumn: ID Promoção
+
+		annotation SummarizationSetBy = Automatic
+
+	column Label
+		dataType: string
+		lineageTag: af79cbf2-f5a4-474f-9a70-9267a126f5ab
+		summarizeBy: none
+		sourceColumn: Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Promoção'
+		dataType: string
+		lineageTag: c2f320c0-b042-4de6-801b-61bfcf1b91ce
+		summarizeBy: none
+		sourceColumn: Nome Promoção
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Desconto'
+		dataType: double
+		lineageTag: 77e9b385-60f3-4150-b8d7-e3a933da1703
+		summarizeBy: sum
+		sourceColumn: % Desconto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Data Inicial'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 127607d8-7c1f-4b90-b7c3-9547923da0c6
+		summarizeBy: none
+		sourceColumn: Data Inicial
+
+		variation Variation
+			isDefault
+			relationship: 4a8b9805-1f75-4427-be23-9f8c96eb4383
+			defaultHierarchy: LocalDateTable_ad27a8ca-41f9-430d-94f0-360c34b3d91f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Final'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 45da38e5-ec38-48c6-ac4d-88e8badffc8b
+		summarizeBy: none
+		sourceColumn: Data Final
+
+		variation Variation
+			isDefault
+			relationship: 2359a2bf-5c05-4106-9910-159f9ca8c330
+			defaultHierarchy: LocalDateTable_0672611a-8fc5-4cec-9e38-bf4e16bc3be8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Promoção-c4a80b7d-2ab1-454e-887d-69175b43850d = m
+		mode: import
+		source =
+				let
+				    Source = Access.Database(File.Contents("C:\Users\owend\Documents\ContosoSalesV31_64bit.accdb")),
+				    _DimPromotion = Source{[Schema="",Item="DimPromotion"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(_DimPromotion,{"PromotionDescription", "PromotionType", "PromotionCategory", "MinQuantity", "MaxQuantity", "ETLLoadID", "LoadDate", "UpdateDate"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Removed Columns",{{"PromotionKey", "ID Promoção"}, {"PromotionLabel", "Label"}, {"PromotionName", "Nome Promoção"}, {"DiscountPercent", "% Desconto"}, {"StartDate", "Data Inicial"}, {"EndDate", "Data Final"}})
+				in
+				    #"Colunas Renomeadas"
+
+	changedProperty = Name
+
+	annotation ColumnsMetadata = {"Columns":[{"Name":"PromotionKey","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimPromotion.{PromotionKey,0}"},{"Name":"PromotionLabel","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimPromotion.{PromotionLabel,1}"},{"Name":"PromotionName","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimPromotion.{PromotionName,2}"},{"Name":"DiscountPercent","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimPromotion.{DiscountPercent,4}"},{"Name":"StartDate","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimPromotion.{StartDate,7}"},{"Name":"EndDate","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimPromotion.{EndDate,8}"}]}
+
+	annotation PBI_ResultType = Table
+

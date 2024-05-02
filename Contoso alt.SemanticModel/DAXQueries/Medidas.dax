@@ -1,0 +1,9 @@
+DEFINE
+    MEASURE 'Medidas'[Soma Vendas] = SUMX(Vendas,Vendas[Qtd]*Vendas[Preço Unitário])
+    MEASURE 'Medidas'[Soma Qtd] = SUM(Vendas[Qtd])
+
+EVALUATE
+    SUMMARIZECOLUMNS(
+        "Soma Vendas", 'Medidas'[Soma Vendas],
+        "Soma Qtd", 'Medidas'[Soma Qtd]
+    )

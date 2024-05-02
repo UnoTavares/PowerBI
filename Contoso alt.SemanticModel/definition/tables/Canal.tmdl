@@ -1,0 +1,40 @@
+table Canal
+	lineageTag: f0a16d5a-7c75-4378-931b-df9dce064b21
+
+	column 'ID Canal'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9e6e9d15-28e0-4f53-b858-cd08f311bfff
+		summarizeBy: none
+		sourceColumn: ID Canal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Canal
+		dataType: string
+		lineageTag: 6bcebb3f-df00-487b-91b9-13792c46eead
+		summarizeBy: none
+		sourceColumn: Canal
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Canal-3836f8fd-e2fe-46b4-9aa4-9956499fe1dc = m
+		mode: import
+		source =
+				let
+				    Source = Access.Database(File.Contents("C:\Users\owend\Documents\ContosoSalesV31_64bit.accdb")),
+				    _DimChannel = Source{[Schema="",Item="DimChannel"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(_DimChannel,{"ETLLoadID", "LoadDate"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"ChannelKey", "Channel"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"ChannelLabel", "ChannelDescription", "UpdateDate"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Removed Columns1",{{"Channel", "ID Canal"}, {"ChannelName", "Canal"}})
+				in
+				    #"Colunas Renomeadas"
+
+	changedProperty = Name
+
+	annotation ColumnsMetadata = {"Columns":[{"Name":"Channel","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimChannel.{ChannelKey,0}"},{"Name":"ChannelName","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimChannel.{ChannelName,2}"}]}
+
+	annotation PBI_ResultType = Table
+

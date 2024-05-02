@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "tabOrder": [
+    "Consulta 1",
+    "Define",
+    "Order by",
+    "Summarize",
+    "Medidas",
+    "Anal Medidas",
+    "Estatisticas Tabela",
+    "Top 100 Tab"
+  ],
+  "defaultTab": "Anal Medidas"
+}

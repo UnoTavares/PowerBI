@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.127.1327.0 (24.03)
+
+annotation PBI_QueryOrder = ["Canal","Vendas","Lojas","Promoção","Produto Subcategoria","Produto Categoria","Produto","Localização","Calendario","Medidas","Biblioteca Funções"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table Canal
+ref table Vendas
+ref table Lojas
+ref table Promoção
+ref table 'Produto Subcategoria'
+ref table 'Produto Categoria'
+ref table Produto
+ref table Localização
+ref table Calendario
+ref table DateTableTemplate_ee100ec4-832f-4877-8d90-4f4a7d9d8d14
+ref table LocalDateTable_ad27a8ca-41f9-430d-94f0-360c34b3d91f
+ref table LocalDateTable_0672611a-8fc5-4cec-9e38-bf4e16bc3be8
+ref table LocalDateTable_494f6084-63dc-45b5-8a35-e73ebdfeaaf8
+ref table Medidas
+ref table 'Biblioteca Funções'
+

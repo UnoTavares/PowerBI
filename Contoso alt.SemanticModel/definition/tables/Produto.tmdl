@@ -1,0 +1,103 @@
+table Produto
+	lineageTag: 47a75a31-c207-4f5d-b787-44f7d7d16708
+
+	column Nome
+		dataType: string
+		lineageTag: d0312d6e-553e-4912-9f24-6f972d3e32a5
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descrição
+		dataType: string
+		lineageTag: ac9ffbe6-2728-4257-9074-83bed735bc5a
+		summarizeBy: none
+		sourceColumn: Descrição
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fabricante
+		dataType: string
+		lineageTag: eb53886b-6fec-496e-b2e9-b30625bd1c0b
+		summarizeBy: none
+		sourceColumn: Fabricante
+
+		annotation SummarizationSetBy = Automatic
+
+	column Marca
+		dataType: string
+		lineageTag: 992f403d-bde9-4f52-a555-0871f180858f
+		summarizeBy: none
+		sourceColumn: Marca
+
+		annotation SummarizationSetBy = Automatic
+
+	column Classe
+		dataType: string
+		lineageTag: 4c9263ff-2c66-4f80-8eaf-766b244ce2dc
+		summarizeBy: none
+		sourceColumn: Classe
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custo Unitário'
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6f63420e-e0c4-401d-9fa8-569a5d86d18c
+		summarizeBy: sum
+		sourceColumn: Custo Unitário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Preço Unitário'
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1ba1bf27-311f-4cb3-a0ec-e2f011d0dc36
+		summarizeBy: sum
+		sourceColumn: Preço Unitário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'ID Produto'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1151fec1-a74f-438b-b2a2-1a5cb8bca231
+		summarizeBy: none
+		sourceColumn: ID Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID Subcategoria'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fc757034-cd5d-471b-a2d0-b5e520b2dd3a
+		summarizeBy: none
+		sourceColumn: ID Subcategoria
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Produto-72fec1c0-1b5e-42ad-8638-c5ae2a2df004 = m
+		mode: import
+		source =
+				let
+				    Source = Access.Database(File.Contents("C:\Users\owend\Documents\ContosoSalesV31_64bit.accdb")),
+				    _DimProduct = Source{[Schema="",Item="DimProduct"]}[Data],
+				    #"Reordered Columns" = Table.ReorderColumns(_DimProduct,{"ProductKey", "ProductName", "ProductSubcategoryKey", "Manufacturer", "BrandName", "ClassName", "ProductLabel", "ProductDescription", "ClassID", "StyleID", "StyleName", "ColorID", "ColorName", "Size", "SizeRange", "SizeUnitMeasureID", "Weight", "WeightUnitMeasureID", "UnitOfMeasureID", "UnitOfMeasureName", "StockTypeID", "StockTypeName", "UnitCost", "UnitPrice", "AvailableForSaleDate", "StopSaleDate", "Status", "ImageURL", "ProductURL", "ETLLoadID", "LoadDate", "UpdateDate"}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Reordered Columns",{"ProductKey", "ProductName", "ProductSubcategoryKey", "Manufacturer", "BrandName", "ClassName", "ProductDescription", "UnitCost", "UnitPrice"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Removed Other Columns",{{"ProductName", "Nome"}, {"ProductDescription", "Descrição"}, {"Manufacturer", "Fabricante"}, {"BrandName", "Marca"}, {"ClassName", "Classe"}, {"UnitCost", "Custo Unitário"}, {"UnitPrice", "Preço Unitário"}, {"ProductKey", "ID Produto"}, {"ProductSubcategoryKey", "ID Subcategoria"}})
+				in
+				    #"Colunas Renomeadas"
+
+	changedProperty = Name
+
+	annotation ColumnsMetadata = {"Columns":[{"Name":"ProductKey","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{ProductKey,0}"},{"Name":"ProductName","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{ProductName,2}"},{"Name":"ProductSubcategoryKey","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{ProductSubcategoryKey,4}"},{"Name":"Manufacturer","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{Manufacturer,5}"},{"Name":"BrandName","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{BrandName,6}"},{"Name":"ClassName","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{ClassName,8}"},{"Name":"ProductDescription","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{ProductDescription,3}"},{"Name":"UnitCost","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{UnitCost,22}"},{"Name":"UnitPrice","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProduct.{UnitPrice,23}"}]}
+
+	annotation PBI_ResultType = Table
+

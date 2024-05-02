@@ -1,0 +1,165 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 836.56165495644518,
+            "y": 801.25928866051618
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "cff6ab3c-c552-402d-8b03-0b6d5d401ce3",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 252.36742058213736,
+            "y": 0
+          },
+          "nodeIndex": "Lojas",
+          "nodeLineageTag": "529c2aae-c665-4b71-ab81-85dee72658b3",
+          "size": {
+            "height": 276,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 806,
+            "y": 367
+          },
+          "nodeIndex": "Localização",
+          "nodeLineageTag": "5408e537-b4c0-42de-b580-8e835f5bb1da",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 1007.375985878524,
+            "y": 6
+          },
+          "nodeIndex": "Produto",
+          "nodeLineageTag": "47a75a31-c207-4f5d-b787-44f7d7d16708",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 1068.4220927406232,
+            "y": 363.67254361338178
+          },
+          "nodeIndex": "Produto Subcategoria",
+          "nodeLineageTag": "6f71f06b-0d7a-4bbd-ad28-6c8176dbe933",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1167.5616549564452,
+            "y": 553.5629386363064
+          },
+          "nodeIndex": "Produto Categoria",
+          "nodeLineageTag": "6ea26b0f-2761-4478-9dd9-5e346eb8a026",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 501.32260357463724,
+            "y": 0
+          },
+          "nodeIndex": "Promoção",
+          "nodeLineageTag": "6056be51-aa22-4566-9677-7c3763db07a4",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 432.4928109488701
+          },
+          "nodeIndex": "Vendas",
+          "nodeLineageTag": "f9ac6810-29eb-4ad6-8e06-736048d2fa01",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 751.87417192090186,
+            "y": 0.88888888888891415
+          },
+          "nodeIndex": "Canal",
+          "nodeLineageTag": "f0a16d5a-7c75-4378-931b-df9dce064b21",
+          "size": {
+            "height": 129.11111111111109,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Calendario",
+          "nodeLineageTag": "745a5456-7210-4170-8909-4ee8c248baeb",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 1503.5616549564452,
+            "y": 19.629644330258088
+          },
+          "nodeIndex": "Biblioteca Funções",
+          "nodeLineageTag": "91ade9f8-3fb9-4114-92a8-24de4e4ffbdf",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 90,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

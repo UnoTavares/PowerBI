@@ -1,0 +1,104 @@
+table Calendario
+	lineageTag: 745a5456-7210-4170-8909-4ee8c248baeb
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ec5e6a43-4154-4f91-8e3a-cd28d73de3d6
+		summarizeBy: none
+		sourceColumn: Data
+
+		variation Variation
+			isDefault
+			relationship: ded10405-39e6-4741-af4f-4577b084d6c5
+			defaultHierarchy: LocalDateTable_494f6084-63dc-45b5-8a35-e73ebdfeaaf8.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data Int'
+		dataType: double
+		isHidden
+		lineageTag: 94c37771-0b15-4474-b8aa-a1287216760b
+		summarizeBy: sum
+		sourceColumn: Data Int
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Nome Mês'
+		dataType: string
+		lineageTag: 4b66e2be-f4e2-4314-8b93-4ae16fb86036
+		summarizeBy: none
+		sourceColumn: Nome Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia Semana'
+		dataType: string
+		lineageTag: 42b4f23c-c8cc-4b31-9208-4c4757493ce6
+		summarizeBy: none
+		sourceColumn: Dia Semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b262240-ceef-412c-9201-1f613ccb5af2
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e42f7e9-4553-457d-8a73-41dc49e3ab61
+		summarizeBy: sum
+		sourceColumn: Trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: 17a499c3-ffb6-432a-91b7-a94316964c84
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		dataType: int64
+		formatString: 0
+		lineageTag: 6591816a-1b4d-4434-81a4-2ec8de84dcb9
+		summarizeBy: sum
+		sourceColumn: Dia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendario-c5851a98-1654-4378-9576-8acf34cce5e3 = m
+		mode: import
+		source =
+				let
+				    Source = Access.Database(File.Contents("C:\Users\owend\Documents\ContosoSalesV31_64bit.accdb")),
+				    _DimDate = Source{[Schema="",Item="DimDate"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(_DimDate,{{"YearKey", Int64.Type}, {"QuarterOfYear", Int64.Type}, {"MonthOfYear", Int64.Type}, {"DayOfMonth", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"MonthInCalendar", "QuarterInCalendar", "DayInWeek"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"YearKey", "Ano"}, {"DateKey", "Data"}, {"MonthName", "Nome Mês"}, {"DayOfWeekName", "Dia Semana"}, {"QuarterOfYear", "Trimestre"}, {"MonthOfYear", "Mês"}, {"DayOfMonth", "Dia"}, {"DateInt", "Data Int"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = Name
+
+	annotation ColumnsMetadata = {"Columns":[{"Name":"DateKey","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimDate.{DateKey,0}"},{"Name":"DateInt","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimDate.{DateInt,1}"},{"Name":"Year","Id":"Section1/DimDate/Changed Type.{YearKey,2}"},{"Name":"QuarterOfYear","Id":"Section1/DimDate/Changed Type.{QuarterOfYear,3}"},{"Name":"MonthOfYear","Id":"Section1/DimDate/Changed Type.{MonthOfYear,4}"},{"Name":"DayOfMonth","Id":"Section1/DimDate/Changed Type.{DayOfMonth,5}"},{"Name":"MonthName","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimDate.{MonthName,6}"},{"Name":"DayOfWeekName","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimDate.{DayOfWeekName,9}"}]}
+
+	annotation PBI_ResultType = Table
+

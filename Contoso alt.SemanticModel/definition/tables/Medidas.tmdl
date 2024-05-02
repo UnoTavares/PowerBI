@@ -1,0 +1,35 @@
+table Medidas
+	lineageTag: cff6ab3c-c552-402d-8b03-0b6d5d401ce3
+
+	measure 'Soma Vendas' = SUMX(Vendas,Vendas[Qtd]*Vendas[Preço Unitário])
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 9f86a7b2-88da-40b5-9b10-9d530de75052
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Soma Qtd' = SUM(Vendas[Qtd])
+		formatString: 0
+		lineageTag: 957699ea-bd56-4567-a8a9-f4d2856408a2
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: a7c42528-f1c9-4b49-b0bb-a4f6d9ec7aa4
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

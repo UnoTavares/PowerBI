@@ -1,0 +1,6 @@
+EVALUATE
+CALCULATETABLE(
+	Produto,
+	Produto[Classe] = "Deluxe"
+)
+ORDER BY Produto[Preço Unitário] DESC

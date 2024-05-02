@@ -1,0 +1,12 @@
+EVALUATE
+    SELECTCOLUMNS(
+        TOPN(
+            100,
+            'Produto Categoria',
+            'Produto Categoria'[ID Categoria],
+            ASC
+        ),
+        'Produto Categoria'[ID Categoria],
+        'Produto Categoria'[Categoria]
+    )
+    ORDER BY 'Produto Categoria'[ID Categoria] ASC

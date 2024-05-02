@@ -1,0 +1,48 @@
+table 'Produto Subcategoria'
+	lineageTag: 6f71f06b-0d7a-4bbd-ad28-6c8176dbe933
+
+	column 'ID Subcategoria'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b3b77d07-74aa-4971-9763-e1297e903c2e
+		summarizeBy: none
+		sourceColumn: ID Subcategoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategoria
+		dataType: string
+		lineageTag: 75a84c31-7044-46fa-a761-6d446e4b2468
+		summarizeBy: none
+		sourceColumn: Subcategoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID Categoria'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 51f31560-5817-4d4d-8640-65b6465c134f
+		summarizeBy: none
+		sourceColumn: ID Categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Produto Subcategoria-aa5c8a99-d0a5-480c-bacf-c3b1c9950bbc' = m
+		mode: import
+		source =
+				let
+				    Source = Access.Database(File.Contents("C:\Users\owend\Documents\ContosoSalesV31_64bit.accdb")),
+				    _DimProductSubcategory = Source{[Schema="",Item="DimProductSubcategory"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(_DimProductSubcategory,{"ProductSubcategoryLabel", "ProductSubcategoryDescription", "ETLLoadID", "LoadDate", "UpdateDate"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"ProductSubcategoryName", "Subcategoria"}, {"ProductSubcategoryKey", "ID Subcategoria"}, {"ProductCategoryKey", "ID Categoria"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = Name
+
+	annotation ColumnsMetadata = {"Columns":[{"Name":"ProductSubcategoryKey","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProductSubcategory.{ProductSubcategoryKey,0}"},{"Name":"ProductSubcategory","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProductSubcategory.{ProductSubcategoryName,2}"},{"Name":"ProductCategoryKey","Id":"Server.Database\\/1/File/c:\\\\users\\\\owend\\\\documents\\\\contososalesv31_64bit.accdb//DimProductSubcategory.{ProductCategoryKey,4}"}]}
+
+	annotation PBI_ResultType = Table
+
